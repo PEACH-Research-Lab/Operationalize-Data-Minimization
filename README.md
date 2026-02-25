@@ -87,9 +87,9 @@ python data_minimization_pipeline_clean_anon.py \
 
 ---
 
-## Heads-up (anonymity)
+## Heads-up 
 
-Due to anonymization, we cannot provide the sensitivity model ID here. It is deployed on a private cloud. As a result, this pipeline may not fully run end-to-end in your environment. FYI.
+Our sensitivity model is deployed on a private cloud. As a result, this pipeline may not fully run end-to-end in your environment. FYI. Please contact us if needed.
 
 
 ## Other files
