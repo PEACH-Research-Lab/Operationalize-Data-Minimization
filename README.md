@@ -86,7 +86,7 @@ python data_minimization_pipeline_clean_anon.py \
 
 ---
 
-## Note on datasets
+## Note on datasets used for evaluation
 
 * **WildChat / open‑ended**: keep the LLM utility judge (already in the script).
 * **MedQA / close‑ended**: do not use an LLM judge. Compare answers directly to gold labels (exact match or EM/F1). This change is limited to the `utility_eval(...)` path.
@@ -103,7 +103,7 @@ Note that certain infrastructure details (e.g., original deployment setup) are n
 
 ---
 
-### Human annotation files
+## Human annotation files
 
 This repo includes two JSONL files related to human preference annotations over A/B privacy-variant pairs:
 
@@ -117,7 +117,7 @@ This repo includes two JSONL files related to human preference annotations over 
 
 ---
 
-## Human-labeled pairwise privacy-preference dataset (released)
+### Human-labeled pairwise privacy-preference dataset (released)
 
 We release a human-labeled dataset of **150 A/B pairs** constructed from ShareGPT-derived prompts under `human_labeled_datasets/`.  See `human_labeled_datasets/DATASET_CARD.md` for details.
 For each pair, annotators choose which message variant is more privacy-preserving (**A**, **B**, or **SAME**).  
