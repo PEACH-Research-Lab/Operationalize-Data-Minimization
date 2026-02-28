@@ -1,15 +1,4 @@
-# Data Minimization Pipeline
 
-This pipeline hides PII in prompts while keeping the task solvable.
-It was built for **WildChat** (open‑ended). It also works for similar open‑ended datasets.
-For close‑ended datasets (e.g., MedQA), see the note at the end.
-
----
-
-## What it does
-
-* Get a baseline answer from your chosen model.
-* Try masking each PII item:
 
   * **redact** → e.g., `[PERSON1]`
   * **abstract** → e.g., `an individual`
@@ -86,12 +75,57 @@ python data_minimization_pipeline_clean_anon.py \
 
 
 ---
+## Heads-up (sensitivity comparator)
 
-## Heads-up 
+The [sensitivity comparator](https://huggingface.co/seazon96/privacy-comparator) used in this pipeline is now publicly available:
 
-Our sensitivity model is deployed on a private cloud. As a result, this pipeline may not fully run end-to-end in your environment. FYI. Please contact us if needed.
+This model can be used as a drop-in replacement for the internal comparator originally deployed in our experiments.
 
+Note that certain infrastructure details (e.g., original deployment setup) are not included, but the released model enables reproducible sensitivity ranking for the pipeline.
 
-## Other files
+---
 
-human_annotation_vs_o3mini.jsonl includes human annotator's choices on messages that they think are more privacy preserving.
+## Repository contents
+
+* `run_pipeline.py` — main runner script.
+* `Prefiltered datasets/` — curated JSONL datasets used as `--dataset` inputs in our pipeline:
+  * `wildchat.jsonl`
+  * `ShareGPT.jsonl`
+  * `medQA.jsonl`
+  * `casehold.jsonl`
+* `human_annotation_vs_o3mini.jsonl` — an example analysis file showing how we compare model decisions against a reference teacher (o3mini) for evaluation/debugging (not the released human ground-truth dataset).
+* `human_labeled_datasets/` - released datasets
+* `README.md` — this document.
+
+---
+
+### Human annotation files
+
+This repo includes two JSONL files related to human preference annotations over A/B privacy-variant pairs:
+
+- `human_labeled_datasets/question-submissions_data_with_messages_anonymized.jsonl` (**released dataset; full votes**)  
+  Contains the full anonymized participant vote dictionary per pair:
+  `answers` = {`participant_1`: "A"/"B"/"SAME", ...}, along with `consensus`, `consensus_ratio`, `message_A`, and `message_B`.
+
+- `human_annotation_vs_o3mini.jsonl` (**analysis/example file; consensus + teacher prediction**)  
+  Contains only the aggregated human label (`consensus`, `consensus_ratio`) plus a reference model’s prediction (e.g., `gpt_response`), an optional explanation (`reason`), and correctness (`is_correct`).  
+  This file is provided as an example of how we evaluate model/teacher alignment against human consensus; it is not the full vote-level dataset.
+
+---
+
+## Human-labeled pairwise privacy-preference dataset (released)
+
+We release a human-labeled dataset of **150 A/B pairs** constructed from ShareGPT-derived prompts under `human_labeled_datasets/`.  See `human_labeled_datasets/DATASET_CARD.md` for details.
+For each pair, annotators choose which message variant is more privacy-preserving (**A**, **B**, or **SAME**).  
+Each pair has **at least 5** votes from qualified participants (52 unique participants total). We include:
+- anonymized per-participant votes (`participant_1`, `participant_2`, ...)
+- `consensus` and `consensus_ratio`
+- `message_A` and `message_B`
+
+The dataset file will be added to this repository (JSONL; one example per line).
+For full details on pair construction and annotation procedures, please refer to the paper.
+
+---
+
+## License
+This repository is released under the Apache 2.0 License.
