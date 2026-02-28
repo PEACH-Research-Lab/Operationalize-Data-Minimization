@@ -23,6 +23,7 @@ The dataset includes:
 - consensus ratio
 
 This dataset is released to support research on privacy-preserving prompting and preference learning for data minimization.
+This dataset is intended primarily as an evaluation benchmark rather than a large-scale training corpus.
 
 ---
 
@@ -69,6 +70,8 @@ Example:
 }
 ```
 
+---
+
 ## Annotation Procedure
 
 Prompts were sampled from ShareGPT under filtering criteria (e.g., English, task-oriented, containing multiple sensitive spans). For more info, please refer to our paper.
@@ -79,10 +82,20 @@ Participants selected which version revealed less sensitive information.
 
 All annotations were collected via survey batches.
 
-## Anonymization
-Participant identifiers have been replaced with stable pseudonyms:
-```participant_1, participant_2, ...```
-No Prolific IDs or personal identifiers are included.
+---
 
+## Ethical Considerations
+
+Participant identifiers are anonymized and replaced with stable pseudonyms. No Prolific IDs or personal identifiers are included.
+The dataset does not contain direct personal identifiers.
+
+Prompt content is derived from ShareGPT. Any sensitive contextual information present originates from the underlying ShareGPT dataset.  
+This dataset does not introduce new personal information; instead, it presents alternative privacy transformations of the same underlying content for comparative evaluation of privacy preservation.
+
+---
 ## Citation
 If you use this dataset, please cite the associated paper.
+
+---
+## License
+This dataset is released under the same license as this repository.
