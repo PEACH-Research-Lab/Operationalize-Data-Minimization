@@ -13,6 +13,15 @@
 * `data_minimization_pipeline_clean_anon.py` — main script and CLI.
 * `Prefiltered datasets/` — your dataset JSONL files (use these as `--dataset`).
 * `data_minimization_results/` — outputs will be written here.
+* `run_pipeline.py` — main runner script.
+* `Prefiltered datasets/` — curated JSONL datasets used as `--dataset` inputs in our pipeline:
+  * `wildchat.jsonl`
+  * `ShareGPT.jsonl`
+  * `medQA.jsonl`
+  * `casehold.jsonl`
+* `human_annotation_vs_o3mini.jsonl` — an example analysis file showing how we compare model decisions against a reference teacher (o3mini) for evaluation/debugging (not the released human ground-truth dataset).
+* `human_labeled_datasets/` - released datasets
+* `README.md` — this document.
 
 ---
 
@@ -72,9 +81,8 @@ python data_minimization_pipeline_clean_anon.py \
 * **WildChat / open‑ended**: keep the LLM utility judge (already in the script).
 * **MedQA / close‑ended**: do not use an LLM judge. Compare answers directly to gold labels (exact match or EM/F1). This change is limited to the `utility_eval(...)` path.
 
-
-
 ---
+
 ## Heads-up (sensitivity comparator)
 
 The [sensitivity comparator](https://huggingface.co/seazon96/privacy-comparator) used in this pipeline is now publicly available:
@@ -82,20 +90,6 @@ The [sensitivity comparator](https://huggingface.co/seazon96/privacy-comparator)
 This model can be used as a drop-in replacement for the internal comparator originally deployed in our experiments.
 
 Note that certain infrastructure details (e.g., original deployment setup) are not included, but the released model enables reproducible sensitivity ranking for the pipeline.
-
----
-
-## Repository contents
-
-* `run_pipeline.py` — main runner script.
-* `Prefiltered datasets/` — curated JSONL datasets used as `--dataset` inputs in our pipeline:
-  * `wildchat.jsonl`
-  * `ShareGPT.jsonl`
-  * `medQA.jsonl`
-  * `casehold.jsonl`
-* `human_annotation_vs_o3mini.jsonl` — an example analysis file showing how we compare model decisions against a reference teacher (o3mini) for evaluation/debugging (not the released human ground-truth dataset).
-* `human_labeled_datasets/` - released datasets
-* `README.md` — this document.
 
 ---
 
