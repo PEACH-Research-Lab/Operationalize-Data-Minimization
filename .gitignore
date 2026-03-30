@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+
+# Website build and dependency artifacts
+website/node_modules/
+website/dist/
+website/.vite/
+website/__pycache__/
