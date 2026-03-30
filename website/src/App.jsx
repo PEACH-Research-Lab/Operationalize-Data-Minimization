@@ -201,13 +201,13 @@ function App() {
     <div className="site-shell">
       <header className="hero">
         <div className="hero__inner">
+          <img
+            className="hero__logo"
+            src={peachLabLogo}
+            alt="PEACH Lab logo"
+          />
           <div className="eyebrow">ICLR Project Website</div>
           <div className="hero__title-row">
-            <img
-              className="hero__logo"
-              src={peachLabLogo}
-              alt="PEACH Lab logo"
-            />
             <h1>{PAPER.title}</h1>
           </div>
           <p className="hero__subtitle">{PAPER.subtitle}</p>
