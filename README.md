@@ -1,8 +1,6 @@
 # Data Minimization Pipeline
 
 This pipeline hides PII in prompts while keeping the task solvable.
-It was built for **WildChat** (open‑ended). It also works for similar open‑ended datasets.
-For close‑ended datasets (e.g., MedQA), see the note at the end.
 
 ---
 
